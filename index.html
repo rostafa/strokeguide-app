@@ -1,1 +1,146 @@
-Hello World
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stroke Secondary Prevention Tool</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="page-header">
+      <h1>Stroke Secondary Prevention Tool</h1>
+      <p class="subtitle">Rule-based post-acute ischemic stroke/TIA antithrombotic guidance</p>
+    </header>
+
+    <section class="card">
+      <h2>Patient Inputs</h2>
+
+      <div class="form-grid">
+        <div class="field">
+          <label for="presentationType">Presentation type</label>
+          <select id="presentationType">
+            <option value="stroke">Ischemic stroke</option>
+            <option value="tia">High-risk TIA</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="etiology">Stroke etiology</label>
+          <select id="etiology">
+            <option value="">Select etiology</option>
+            <option value="cardioembolic">Cardioembolic</option>
+            <option value="large-artery">Large artery atherosclerosis</option>
+            <option value="small-vessel">Small vessel (lacunar)</option>
+            <option value="dissection">Arterial dissection</option>
+            <option value="pfo">PFO-associated stroke</option>
+            <option value="aps">Antiphospholipid syndrome (APS)</option>
+            <option value="cryptogenic">Cryptogenic / ESUS</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="nihss">NIHSS</label>
+          <input type="number" id="nihss" min="0" max="42" placeholder="e.g. 2" />
+        </div>
+
+        <div class="field">
+          <label for="earlyWindow">Within early secondary-prevention window?</label>
+          <select id="earlyWindow">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="conditional-section hidden" id="cardioembolicSection">
+        <h3>Cardioembolic details</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label for="cardioSource">Cardioembolic source</label>
+            <select id="cardioSource">
+              <option value="af">Atrial fibrillation / flutter</option>
+              <option value="mechanical-valve">Mechanical valve or rheumatic mitral stenosis</option>
+              <option value="other">Other cardioembolic source</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="infarctSize">Stroke size / severity for anticoagulation timing</label>
+            <select id="infarctSize">
+              <option value="small">Small / mild</option>
+              <option value="moderate">Moderate</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="conditional-section hidden" id="largeArterySection">
+        <h3>Large artery details</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label for="largeArterySubtype">Subtype</label>
+            <select id="largeArterySubtype">
+              <option value="extracranial">Extracranial carotid disease</option>
+              <option value="icad">Intracranial atherosclerotic disease (ICAD)</option>
+              <option value="other-large-artery">Other / unspecified LAA</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="carotidStenosis">Symptomatic extracranial stenosis</label>
+            <select id="carotidStenosis">
+              <option value="none">None / not applicable</option>
+              <option value="lt50">&lt;50%</option>
+              <option value="50-69">50–69%</option>
+              <option value="ge70">≥70%</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="icadSeverity">ICAD severity</label>
+            <select id="icadSeverity">
+              <option value="none">None / not applicable</option>
+              <option value="lt70">&lt;70%</option>
+              <option value="70-99">70–99%</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="conditional-section hidden" id="pfoSection">
+        <h3>PFO details</h3>
+        <div class="form-grid">
+          <div class="field">
+            <label for="pfoClosureCandidate">Meets closure criteria?</label>
+            <select id="pfoClosureCandidate">
+              <option value="yes">Yes</option>
+              <option value="no">No / uncertain</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button id="generateBtn" type="button">Generate Recommendation</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Recommendation</h2>
+      <div id="result" class="result-card">Enter patient details, then generate a recommendation.</div>
+      <p class="disclaimer">
+        Disclaimer: This tool is for educational and prototyping purposes only. It is not a substitute
+        for clinical judgment, guideline review, or patient-specific decision-making.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>Copyright 2026 - Mostafa Razavi, MD</span>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
